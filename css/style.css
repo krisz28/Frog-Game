@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&family=Orbitron:wght@400..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css");
 
-body{
+body {
     font-family: "Mystery Quest", system-ui;
     font-size: 20px;
     line-height: 1.5;
@@ -9,12 +10,12 @@ body{
     background-color: rgb(216, 248, 216);
 }
 
-section{
+section {
     width: 800px;
     height: 600px;
     border: 4px solid #7c4817;
     background-color: #ffffff;
-    margin: 50px auto;
+    margin: auto;
     position: relative;
     overflow: hidden;
     background-image: url('../img/hatter.png');
@@ -22,26 +23,24 @@ section{
     background-size: 800px 600px;
 }
 
-aside{
-    width: 30%;
+aside {
+    height: 600px;
     background-color: rgba(0, 0, 0, 0.5);
-    
+
 }
 
-footer{
+footer {
     margin-top: 80px;
 }
 
-.btn-success{
-    margin-left: 450px;
-}
 
-.btn-success:hover{
+.btn-success:hover {
     background-color: rgb(49, 161, 49);
 }
 
-header, footer{
+header,
+footer {
     background-color: rgb(75, 112, 75);
     color: #ffffff;
-    
+
 }
