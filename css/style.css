@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&family=Orbitron:wght@400..900&display=swap');
+
+body{
+    font-family: "Mystery Quest", system-ui;
+    font-size: 20px;
+    line-height: 1.5;
+    font-style: normal;
+    font-weight: 400;
+    background-color: rgb(216, 248, 216);
+}
+
+section{
+    width: 800px;
+    height: 600px;
+    border: 4px solid #7c4817;
+    background-color: #ffffff;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../img/hatter.png');
+    background-repeat: no-repeat;
+    background-size: 800px 600px;
+}
+
+aside{
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
+
+footer{
+    margin-top: 80px;
+}
+
+.btn-success{
+    margin-left: 450px;
+}
+
+.btn-success:hover{
+    background-color: rgb(49, 161, 49);
+}
+
+header, footer{
+    background-color: rgb(75, 112, 75);
+    color: #ffffff;
+    
+}
