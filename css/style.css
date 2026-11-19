@@ -44,3 +44,12 @@ footer {
     color: #ffffff;
 
 }
+
+.beka {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    background-image: url("../img/bekaNyitottszaj.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
