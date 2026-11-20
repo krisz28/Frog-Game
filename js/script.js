@@ -12,9 +12,8 @@ document.querySelector(".kezdes").addEventListener("click", () => {
         });
     }
     gameInterval = setInterval(()=>{
-        var y = Math.random()*(gameArea.offsetHeight-50);
-        var speed = 1+Math.random()*2;
-        var obj = new Elemek(gameArea.offsetWidth, y,"section", speed);
+        var speed = 10;
+        var obj = new Elemek(gameArea.offsetWidth,"section", speed);
         obj.move();
     }, 1000)
 
