@@ -30,7 +30,8 @@
                             <p><i class="bi bi-heart-fill text-danger"></i> 3/<span>3</span></p>
                         </div>
                         <button class="btn btn-success border-white my-5 btn-lg kezdes">Kezdés</button><br>
-                        <button class="btn btn-info mt-5 border-white text btn-lg ">Szabályok</button>
+                        <button class="btn btn-info mt-5 border-white text btn-lg" data-bs-toggle="modal"
+                            data-bs-target="#szabalyok">Szabályok</button>
                     </aside>
                 </div>
             </div>
@@ -38,8 +39,31 @@
 
     </main>
     <footer class="py-3 mt-5 w-100">
-        <p class="text-center ">Karbantartók : kalina.kristina.2023i@bankitatabanya.hu &bull; dobai.nikoletta.2023i@bankitatabanya.hu</p>
+        <p class="text-center ">Karbantartók : kalina.kristina.2023i@bankitatabanya.hu &bull;
+            dobai.nikoletta.2023i@bankitatabanya.hu</p>
     </footer>
+    <div class="modal fade" id="szabalyok" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Szabályok</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>A békával ugord át a köveket és kerüld az ágakat! <br>
+                        Minden szúnyog 1 pont.</p>
+                    <p>Maximum elérhető pontok száma 20. <br>
+                        Ha nekiugrassz egy ágnak vagy kőnek, akkor -1 élet.</p>
+                    <p>3 életed van. </p>
+                    <p>Cél a 20 pont megszerzése mielött elfogyna az életed!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/Beka.js"></script>
