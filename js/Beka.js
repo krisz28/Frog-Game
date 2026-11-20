@@ -49,7 +49,8 @@ class Beka {
         var kozep = 150;
         var irany = -1;
 
-        this.#element.style.backgroundImage = "url('./img/bekaUgrikNyitottszaj.png')";
+        this.#element.style.backgroundImage = "url('./img/bekaUgrik.png')";
+        
 
         this.#moveInterval = setInterval(() => {
 
@@ -65,7 +66,7 @@ class Beka {
                 clearInterval(this.#moveInterval);
                 this.#moveInterval = null;
                 
-                this.#element.style.backgroundImage = "url('./img/bekaNyitottszaj.png')";
+                this.#element.style.backgroundImage = "url('./img/beka.png')";
             }
 
             this.#element.style.top = this.#y + "px";
