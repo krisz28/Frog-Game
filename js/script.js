@@ -1,5 +1,5 @@
 var gameArea = document.querySelector("section");
-var beka = new Beka(90, 450, "section", 5);
+var beka = new Beka(90, 450, "section", 25);
 
 document.querySelector(".kezdes").addEventListener("click", () => {
     document.querySelector(".ugras").classList.remove("disabled");
