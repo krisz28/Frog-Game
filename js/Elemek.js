@@ -1,13 +1,12 @@
 class Elemek{
     #x;
     #y;
-    #isSzunyog;
+    #isAg;
     #container;
-    #spped;
+    #speed;
     #element;
     #moveInterval = null;
 
-    static #score = 0;/* nincs */
     static #elet = 3;/* nincs */
 
     constructor(x,y,container, speed){
@@ -20,13 +19,13 @@ class Elemek{
     setX(x){
         this.#x = x;
     }
-    setX(y){
+    setY(y){
         this.#y = y;
     }
-    setX(container){
+    setContainer(container){
         this.#container = document.querySelector(container);
     }
-    setX(speed){
+    setSpeed(speed){
         this.#speed = speed;
     }
 
@@ -34,14 +33,8 @@ class Elemek{
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
         this.#element.style.top = this.#y + "px";
-        this.#isSzunyog = Math.random();
-        if(this.#isSzunyog <= 0.3){
-            this.#element.classList.add("szunyog");
-        }else if(this.#isSzunyog >0.3 && this.#isSzunyog <= 0.6 ){
-            this.#element.classList.add("ag");
-        }else if(this.#isSzunyog > 0.6 && this.#isSzunyog <= 0.9){
-            this.#element.classList.add("ko");
-        }
+        this.#isAg = Math.random() < 0.5;
+        this.#element.classList.add(this.#isAg ? "ag" : "ko")
         this.#container.appendChild(this.#element);
     }
     /* collect függvény */
@@ -58,7 +51,7 @@ class Elemek{
             }
         },20)
     }
-
+    
     remove(){
         this.#element.remove();
         clearInterval(this.#moveInterval);
