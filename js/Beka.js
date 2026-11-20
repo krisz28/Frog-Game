@@ -22,6 +22,14 @@ class Beka {
         this.#y = y;
     }
 
+    getY(y){
+        return this.#y;
+    }
+
+    getX(x){
+        return this.#x;
+    }
+
     setSpeed(speed) {
         this.#speed = speed;
     }

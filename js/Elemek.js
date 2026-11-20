@@ -33,7 +33,7 @@ class Elemek{
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
         this.#element.style.top = this.#y + "px";
-        this.#isAg = Math.random() < 0.5;
+        this.#isAg = Math.random() < 0.3;
         this.#element.classList.add(this.#isAg ? "ag" : "ko")
         this.#container.appendChild(this.#element);
     }
