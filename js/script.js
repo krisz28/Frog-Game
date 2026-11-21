@@ -1,4 +1,6 @@
 var gameInterval = null;
+var gameIntervalSzunyog = null;
+var gameIntervalElemek = null;
 var gameArea = document.querySelector("section");
 var beka = new Beka(90, 450, "section", 25);
 var scoreInterval = null;
@@ -14,12 +16,17 @@ document.querySelector(".kezdes").addEventListener("click", () => {
             }
         });
         scoreListener();
-        gameInterval = setInterval(() => {
+        gameIntervalSzunyog = setInterval(() => {
             var y = Math.random() * (gameArea.offsetHeight - 50);
             var speed = 1 + Math.random() * 2;
             var obj = new Szunyog(gameArea.offsetWidth, y, speed, "section");
             obj.move();
         }, 10000);
+        gameIntervalElemek = setInterval(() => {
+            var speed = 15;
+            var obj = new Elemek(gameArea.offsetWidth,  "section", speed);
+            obj.move();
+        }, 1000);
     }
 });
 

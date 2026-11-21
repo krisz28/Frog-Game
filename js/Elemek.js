@@ -9,9 +9,8 @@ class Elemek{
 
     static #elet = 3;/* nincs */
 
-    constructor(x,y,container, speed){
+    constructor(x,container, speed){
         this.setX(x);
-        this.setY(y);
         this.setSpeed(speed);
         this.setContainer(container);
         this.createElement();
@@ -33,7 +32,7 @@ class Elemek{
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
         this.#element.style.top = this.#y + "px";
-        this.#isAg = Math.random() < 0.3;
+        this.#isAg = Math.random() < 0.5;
         this.#element.classList.add(this.#isAg ? "ag" : "ko")
         this.#container.appendChild(this.#element);
     }
