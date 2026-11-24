@@ -25,11 +25,11 @@ class Szunyog {
         this.#y = y;
     }
 
-    getY(){
+    getY() {
         return this.#y;
     }
 
-    getX(){
+    getX() {
         return this.#x;
     }
 
@@ -47,27 +47,40 @@ class Szunyog {
         this.#element.style.top = this.#y + "px";
         this.#element.classList.add("szunyog");
         this.#container.appendChild(this.#element);
-        this.#element.addEventListener("click", () => this.collect());
     }
 
+
     collect() {
-        if (Szunyog.getY() == Beka.getY()) {
+        let bekaX = beka.getX();
+        let bekaY = beka.getY();
+
+        if (this.#x < bekaX + 120 && this.#x + 50 > bekaX &&
+            this.#y < bekaY + 120 && this.#y + 50 > bekaY) {
             Szunyog.#pont++;
+            document.querySelector(".pont span").innerHTML = Szunyog.#pont;
             this.remove();
         }
     }
+
 
     move() {
         this.#moveInterval = setInterval(() => {
             this.#x -= this.#speed;
             this.#element.style.left = this.#x + "px";
+            this.collect();
+            if (this.#x < -60) {
+                this.remove();
+            }
         }, 20);
     }
 
     remove() {
-        this.#element.remove();
+        if (this.#element != null) {
+            this.#element.remove();
+            this.#element = null;
+        }
+
         clearInterval(this.#moveInterval);
-        this.#moveInterval = null;
     }
 
     static getElet() {

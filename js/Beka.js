@@ -22,11 +22,11 @@ class Beka {
         this.#y = y;
     }
 
-    getY(y){
+    getY() {
         return this.#y;
     }
 
-    getX(x){
+    getX() {
         return this.#x;
     }
 
@@ -58,7 +58,7 @@ class Beka {
         var irany = -1;
 
         this.#element.style.backgroundImage = "url('./img/bekaUgrik.png')";
-        
+
 
         this.#moveInterval = setInterval(() => {
 
@@ -70,10 +70,8 @@ class Beka {
 
             if (this.#y >= eredetiY) {
                 this.#y = eredetiY;
-
                 clearInterval(this.#moveInterval);
                 this.#moveInterval = null;
-                
                 this.#element.style.backgroundImage = "url('./img/beka.png')";
             }
 

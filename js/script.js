@@ -4,7 +4,7 @@ var gameIntervalElemek = null;
 var gameArea = document.querySelector("section");
 var beka = new Beka(90, 450, "section", 25);
 var scoreInterval = null;
-var elet = document.querySelector(".elet span");
+var elet = document.querySelector(".my-5 p span");
 var pont = document.querySelector(".pont span");
 
 document.querySelector(".kezdes").addEventListener("click", () => {
@@ -17,14 +17,14 @@ document.querySelector(".kezdes").addEventListener("click", () => {
         });
         scoreListener();
         gameIntervalSzunyog = setInterval(() => {
-            var y = Math.random() * (gameArea.offsetHeight - 50);
-            var speed = 1 + Math.random() * 2;
+            var y = 180 + Math.random() * 230;
+            var speed = 4 + Math.random() * 3;
             var obj = new Szunyog(gameArea.offsetWidth, y, speed, "section");
             obj.move();
-        }, 10000);
+        }, 2000);
         gameIntervalElemek = setInterval(() => {
             var speed = 15;
-            var obj = new Elemek(gameArea.offsetWidth,  "section", speed);
+            var obj = new Elemek(gameArea.offsetWidth, "section", speed);
             obj.move();
         }, 1000);
     }
@@ -32,21 +32,31 @@ document.querySelector(".kezdes").addEventListener("click", () => {
 
 function scoreListener() {
     scoreInterval = setInterval(() => {
-        var pont = Szunyog.getPont();
-        var elet = Szunyog.getElet();
 
-        elet.innerHTML = elet;
-        pont.innerHTML = pont;
+        var aktualisPont = Szunyog.getPont();
+        var aktualisElet = Szunyog.getElet();
 
-        if (gameInterval != null && elet <= 0) {
+        pont.innerHTML = aktualisPont;
+        elet.innerHTML = aktualisElet;
+
+        if (aktualisElet <= 0) {
+            clearInterval(gameIntervalSzunyog);
+            clearInterval(gameIntervalElemek);
+            clearInterval(scoreInterval);
+
+            gameInterval = null;
+
             alert("Veszítettél!");
         }
-        else if (gameInterval != null && pont >= 20) {
+        else if (aktualisPont >= 20) {
+            clearInterval(gameIntervalSzunyog);
+            clearInterval(gameIntervalElemek);
+            clearInterval(scoreInterval);
+
+            gameInterval = null;
+
             alert("Nyertél!");
         }
-    }, 20);
+
+    }, 100);
 }
-
-
-
-
