@@ -25,7 +25,7 @@ document.querySelector(".kezdes").addEventListener("click", () => {
             obj.move();
         }, 2000);
         gameIntervalElemek = setInterval(() => {
-            var speed = 15;
+            var speed = 15; 
             var obj = new Elemek(gameArea.offsetWidth, "section", speed);
             obj.move();
         }, 1000);
@@ -36,29 +36,51 @@ function pontFigyelo() {
     scoreInterval = setInterval(() => {
 
         var aktualisPont = Szunyog.getPont();
-        var aktualisElet = Szunyog.getElet();
+        var aktualisElet = Elemek.getElet();
 
         pont.innerHTML = aktualisPont;
         elet.innerHTML = aktualisElet;
 
         if (aktualisElet <= 0) {
-            clearInterval(gameIntervalSzunyog);
-            clearInterval(gameIntervalElemek);
-            clearInterval(scoreInterval);
+            veszitModal();
 
-            gameInterval = null;
-            
-            
+
         }
         else if (aktualisPont >= 20) {
-            clearInterval(gameIntervalSzunyog);
-            clearInterval(gameIntervalElemek);
-            clearInterval(scoreInterval);
-
-            gameInterval = null;
+            stop();
             nyeresModal.show();
-            
+
         }
 
     }, 100);
+}
+
+function stop() {
+    clearInterval(gameIntervalSzunyog);
+    clearInterval(gameIntervalElemek);
+    clearInterval(scoreInterval);
+
+    gameInterval = null;
+    Szunyog.resetGame();
+    Elemek.tResetElet();
+    document.querySelectorAll(".ko").forEach(ko => ko.remove());
+    document.querySelectorAll(".ag").forEach(ag => ag.remove());
+    document.querySelectorAll(".szunyog").forEach(szunyog => szunyog.remove());
+}
+function veszitModal() {
+    stop();
+    document.querySelector("#nyeres .modal-header").classList.remove("bg-success");
+    document.querySelector("#nyeres .modal-header").classList.add("bg-danger");
+    document.querySelector("#nyeres .modal-header").innerHTML = "VESZÍTETTÉL";
+    document.querySelector("#nyeres .modal-body").innerHTML = "Elfogyott az életed!\nÉhes maradtál!";
+    nyeresModal.show();
+    document.querySelector("#nyeres .btn-secondary").addEventListener("click", () => {
+        document.querySelector("#nyeres .modal-header").classList.add("bg-success");
+        document.querySelector("#nyeres .modal-header").classList.remove("bg-danger");
+        document.querySelector("#nyeres .modal-header").innerHTML = "NERTÉL";
+        document.querySelector("#nyeres .modal-body").innerHTML = "Elérted a 20 pontot és maradt életed.";
+    });
+
+
+
 }

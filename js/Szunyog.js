@@ -7,7 +7,6 @@ class Szunyog {
     #moveInterval = null;
 
     static #pont = 0;
-    static #elet = 3;
 
     constructor(x, y, speed, container) {
         this.setX(x);
@@ -64,6 +63,7 @@ class Szunyog {
     }
 
 
+
     move() {
         this.#moveInterval = setInterval(() => {
             this.#x -= this.#speed;
@@ -84,16 +84,12 @@ class Szunyog {
         clearInterval(this.#moveInterval);
     }
 
-    static getElet() {
-        return Szunyog.#elet;
-    }
 
     static getPont() {
         return Szunyog.#pont;
     }
 
     static resetGame() {
-        Szunyog.#elet = 3;
         Szunyog.#pont = 0;
     }
 }

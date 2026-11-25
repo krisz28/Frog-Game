@@ -7,8 +7,7 @@ class Elemek{
     #element;
     #moveInterval = null;
 
-    static #elet = 3;/* nincs */
-
+    static #elet = 3;
     constructor(x,container, speed){
         this.setX(x);
         this.setSpeed(speed);
@@ -27,12 +26,19 @@ class Elemek{
     setSpeed(speed){
         this.#speed = speed;
     }
+    static getElet(){
+        return Elemek.#elet;
+    }
+    static tResetElet(){
+        Elemek.#elet = 3;
+    }
 
     createElement(){
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
-        this.#element.style.top = this.#y + "px";
         this.#isAg = Math.random() < 0.5;
+        this.#y = (this.#isAg ? 20 : 460);
+        this.#element.style.top = this.#y + "px";
         this.#element.classList.add(this.#isAg ? "ag" : "ko")
         this.#container.appendChild(this.#element);
     }
@@ -45,7 +51,8 @@ class Elemek{
             }
             this.#x -= this.#speed;
             this.#element.style.left = this.#x + "px";
-            if(this.#x < -50){/* változtatni 50-n */
+            this.eletVeszites();
+            if(this.#x < -50){
                 this.remove();
             }
         },20)
@@ -55,5 +62,20 @@ class Elemek{
         this.#element.remove();
         clearInterval(this.#moveInterval);
         this.#moveInterval = null;
+    }
+
+    eletVeszites(){
+        var bekaX = beka.getX();
+        var bekaY = beka.getY();
+        var szelesseg = (this.#isAg ? 1000 : 5);  
+        var magassag = (this.#isAg ? 200 : 120);  
+
+        if (this.#x < bekaX + 80 && this.#x + szelesseg > bekaX &&
+            this.#y < bekaY + 80 && this.#y + magassag > bekaY) {
+            Elemek.#elet--;
+            document.querySelector(".elet span").innerHTML = Elemek.#elet;
+            /* béka fájdalom kifejező arc */
+            this.remove();
+        }
     }
 }

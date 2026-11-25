@@ -67,12 +67,10 @@ footer {
     background-image: url("../img/ag.png");
     width: 1000px;
     height: 200px;
-    top: 20px;
 }
 
 .ko {
     background-image: url("../img/ko.png");
     width: 120px;
     height: 120px;
-    top: 460px;
 }
