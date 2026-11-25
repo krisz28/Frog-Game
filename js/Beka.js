@@ -5,6 +5,8 @@ class Beka {
     #element;
     #speed;
     #moveInterval = null;
+    #ugrik = false;
+    #szajInterval = null;
 
     constructor(x, y, container, speed) {
         this.setX(x);
@@ -56,9 +58,8 @@ class Beka {
         var eredetiY = this.#y;
         var kozep = 150;
         var irany = -1;
-
+        this.#ugrik = true;
         this.#element.style.backgroundImage = "url('./img/bekaUgrik.png')";
-
 
         this.#moveInterval = setInterval(() => {
 
@@ -72,6 +73,7 @@ class Beka {
                 this.#y = eredetiY;
                 clearInterval(this.#moveInterval);
                 this.#moveInterval = null;
+                this.#ugrik = false;
                 this.#element.style.backgroundImage = "url('./img/beka.png')";
             }
 
@@ -80,6 +82,26 @@ class Beka {
         }, 20);
     }
 
+    szajNyitas() {
 
+        clearTimeout(this.#szajInterval);
+
+        if (this.#ugrik) {
+            this.#element.style.backgroundImage = "url('./img/bekaUgrikNyitottszaj.png')";
+        }
+        else {
+            this.#element.style.backgroundImage = "url('./img/bekaNyitottszaj.png')";
+        }
+
+        this.#szajInterval = setInterval(() => {
+            if (this.#ugrik) {
+                this.#element.style.backgroundImage = "url('./img/bekaUgrik.png')";
+            }
+            else {
+                this.#element.style.backgroundImage = "url('./img/beka.png')";
+            }
+
+        }, 200);
+    }
 
 }

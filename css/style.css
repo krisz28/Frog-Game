@@ -45,7 +45,10 @@ footer {
 
 }
 
-.beka, .szunyog, .ag, .ko {
+.beka,
+.szunyog,
+.ag,
+.ko {
     width: 120px;
     height: 120px;
     position: absolute;
@@ -53,20 +56,23 @@ footer {
     background-size: contain;
     background-repeat: no-repeat;
 }
-.szunyog{
+
+.szunyog {
     background-image: url("../img/szunyog.png");
     width: 50px;
     height: 50px;
-} 
-.ag{
+}
+
+.ag {
     background-image: url("../img/ag.png");
     width: 1000px;
     height: 200px;
     top: 20px;
-} 
-.ko{
+}
+
+.ko {
     background-image: url("../img/ko.png");
     width: 120px;
     height: 120px;
-    top:460px;
+    top: 460px;
 }

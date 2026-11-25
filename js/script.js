@@ -7,6 +7,8 @@ var scoreInterval = null;
 var elet = document.querySelector(".my-5 p span");
 var pont = document.querySelector(".pont span");
 
+const nyeresModal = new bootstrap.Modal('#nyeres');
+
 document.querySelector(".kezdes").addEventListener("click", () => {
     if (gameInterval == null) {
         document.querySelector(".ugras").classList.remove("disabled");
@@ -15,7 +17,7 @@ document.querySelector(".kezdes").addEventListener("click", () => {
                 beka.ugras();
             }
         });
-        scoreListener();
+        pontFigyelo();
         gameIntervalSzunyog = setInterval(() => {
             var y = 180 + Math.random() * 230;
             var speed = 4 + Math.random() * 3;
@@ -30,7 +32,7 @@ document.querySelector(".kezdes").addEventListener("click", () => {
     }
 });
 
-function scoreListener() {
+function pontFigyelo() {
     scoreInterval = setInterval(() => {
 
         var aktualisPont = Szunyog.getPont();
@@ -45,8 +47,8 @@ function scoreListener() {
             clearInterval(scoreInterval);
 
             gameInterval = null;
-
-            alert("Veszítettél!");
+            
+            
         }
         else if (aktualisPont >= 20) {
             clearInterval(gameIntervalSzunyog);
@@ -54,8 +56,8 @@ function scoreListener() {
             clearInterval(scoreInterval);
 
             gameInterval = null;
-
-            alert("Nyertél!");
+            nyeresModal.show();
+            
         }
 
     }, 100);

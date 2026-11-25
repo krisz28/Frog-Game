@@ -58,6 +58,7 @@ class Szunyog {
             this.#y < bekaY + 120 && this.#y + 50 > bekaY) {
             Szunyog.#pont++;
             document.querySelector(".pont span").innerHTML = Szunyog.#pont;
+            beka.szajNyitas();
             this.remove();
         }
     }
