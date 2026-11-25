@@ -1,4 +1,4 @@
-class Elemek{
+class Elemek {
     #x;
     #y;
     #isAg;
@@ -6,34 +6,35 @@ class Elemek{
     #speed;
     #element;
     #moveInterval = null;
+    #szajInterval = null;
 
     static #elet = 3;
-    constructor(x,container, speed){
+    constructor(x, container, speed) {
         this.setX(x);
         this.setSpeed(speed);
         this.setContainer(container);
         this.createElement();
     }
-    setX(x){
+    setX(x) {
         this.#x = x;
     }
-    setY(y){
+    setY(y) {
         this.#y = y;
     }
-    setContainer(container){
+    setContainer(container) {
         this.#container = document.querySelector(container);
     }
-    setSpeed(speed){
+    setSpeed(speed) {
         this.#speed = speed;
     }
-    static getElet(){
+    static getElet() {
         return Elemek.#elet;
     }
-    static tResetElet(){
+    static tResetElet() {
         Elemek.#elet = 3;
     }
 
-    createElement(){
+    createElement() {
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
         this.#isAg = Math.random() < 0.5;
@@ -43,32 +44,33 @@ class Elemek{
         this.#container.appendChild(this.#element);
     }
     /* collect függvény */
-    move(){
-        this.#moveInterval = setInterval(() =>{
-            if(this.#element.parentNode == null){
+    move() {
+        this.#moveInterval = setInterval(() => {
+            if (this.#element.parentNode == null) {
                 this.remove();
                 return;
             }
             this.#x -= this.#speed;
             this.#element.style.left = this.#x + "px";
             this.eletVeszites();
-            if(this.#x < -50){
+            if (this.#x < -50) {
                 this.remove();
             }
-        },20)
+        }, 20)
     }
-    
-    remove(){
+
+    remove() {
         this.#element.remove();
         clearInterval(this.#moveInterval);
         this.#moveInterval = null;
     }
 
-    eletVeszites(){
+    eletVeszites() {
+        clearTimeout(this.#szajInterval);
         var bekaX = beka.getX();
         var bekaY = beka.getY();
-        var szelesseg = (this.#isAg ? 1000 : 5);  
-        var magassag = (this.#isAg ? 200 : 120);  
+        var szelesseg = (this.#isAg ? 100 : 10);
+        var magassag = (this.#isAg ? 200 : 120);
 
         if (this.#x < bekaX + 80 && this.#x + szelesseg > bekaX &&
             this.#y < bekaY + 80 && this.#y + magassag > bekaY) {
@@ -76,6 +78,27 @@ class Elemek{
             document.querySelector(".elet span").innerHTML = Elemek.#elet;
             /* béka fájdalom kifejező arc */
             this.remove();
+            if (this.#isAg) {
+                beka.setElement("url('./img/bekaUgrikUtes.png')")
+            }
+            else {
+                beka.setElement("url('./img/bekaUtes.png')")
+            }
+
+            this.#szajInterval = setTimeout(() => {
+                if (this.#isAg) {
+                    beka.setElement("url('./img/bekaUgrik.png')")
+                }
+                else {
+                    beka.setElement("url('./img/beka.png')")
+                }
+
+            }, 200);
+
         }
+
+
+
     }
+
 }

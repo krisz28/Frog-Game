@@ -23,6 +23,9 @@ class Beka {
     setY(y) {
         this.#y = y;
     }
+    setElement(kep){
+        this.#element.style.backgroundImage = kep;
+    }
 
     getY() {
         return this.#y;
@@ -103,5 +106,6 @@ class Beka {
 
         }, 200);
     }
+
 
 }
