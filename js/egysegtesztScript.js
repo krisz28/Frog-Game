@@ -28,5 +28,7 @@ Elemek.ResetElet();
 
 console.assert(Elemek.getElet() === 3, "Hiba az életek visszaállításában!");
 
+document.querySelectorAll(".ko").forEach(ko => ko.remove());
+document.querySelectorAll(".ag").forEach(ag => ag.remove());
 ////////////////////// ELEMEK ///////////////////
 
