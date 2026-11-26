@@ -44,13 +44,13 @@ function pontFigyelo() {
 
         if (aktualisElet <= 0) {
             veszitModal();
-
+            document.querySelector(".ugras").classList.add("disabled");
 
         }
         else if (aktualisPont >= 20) {
             stop();
             nyeresModal.show();
-
+            document.querySelector(".ugras").classList.add("disabled");
         }
 
     }, 100);

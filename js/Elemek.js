@@ -8,7 +8,7 @@ class Elemek {
     #moveInterval = null;
     #szajInterval = null;
     #utkozott = false;
-    #utesTimeout = null;
+    
 
     static #elet = 3;
     static #utkozesVedett = false;
