@@ -26,7 +26,7 @@ class Elemek {
     }
     setY(y) {
         if (y != 20 && y != 460) {
-            this.#y = 0;
+            this.#y =  0;
         } else this.#y = y;
     }
     setContainer(container) {
@@ -34,7 +34,7 @@ class Elemek {
     }
     setSpeed(speed) {
         if (speed < 1) {
-            this.#speed = 0;
+            this.#speed = 1;
         } else this.#speed = speed;
     }
     getX() {
@@ -61,7 +61,9 @@ class Elemek {
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
         this.#isAg = Math.random() < 0.5;
-        this.#y = (this.#isAg ? 20 : 460);
+        if(this.#y == 0){
+            this.#y = (this.#isAg ? 20 : 460);
+        }
         this.#element.style.top = this.#y + "px";
         this.#element.classList.add(this.#isAg ? "ag" : "ko")
         this.#container.appendChild(this.#element);

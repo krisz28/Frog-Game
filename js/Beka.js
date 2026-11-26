@@ -53,6 +53,9 @@ class Beka {
             this.#speed = speed;
         }
     }
+    getSpeed(){
+        return this.#speed;
+    }
 
     getContainer() {
         return this.#container;
@@ -147,5 +150,9 @@ class Beka {
 
     toString() {
         return "{" + this.getX() + ";" + this.getY() + ";" + this.getContainer() + ";" + this.getSpeed() + "}";
+    }
+
+    remove(){
+        this.#element.remove();
     }
 }

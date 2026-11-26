@@ -53,6 +53,9 @@ class Szunyog {
             this.#speed = speed;
         }
     }
+    getSpeed(){
+        return this.#speed;
+    }
 
     setContainer(container) {
         this.#container = document.querySelector(container);
