@@ -57,6 +57,10 @@ class Beka {
         return this.#speed;
     }
 
+    getUgrik() {
+        return this.#ugrik;
+    }
+
     getContainer() {
         return this.#container;
     }
