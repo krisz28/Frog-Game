@@ -54,6 +54,10 @@ class Beka {
         }
     }
 
+    getUgrik() {
+        return this.#ugrik;
+    }
+
     getContainer() {
         return this.#container;
     }

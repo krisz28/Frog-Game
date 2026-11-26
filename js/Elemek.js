@@ -8,6 +8,7 @@ class Elemek {
     #moveInterval = null;
     #szajInterval = null;
     #utkozott = false;
+    #utesTimeout = null;
 
     static #elet = 3;
     static #utkozesVedett = false;
@@ -57,6 +58,17 @@ class Elemek {
         Elemek.#utkozesVedett = false;
     }
 
+    static getUtkozesVedett() {
+        return Elemek.#utkozesVedett;
+    }
+
+    static eletCsokkentes() {
+        Elemek.#elet--;
+
+        document.querySelector(".elet span").innerHTML =
+            Elemek.#elet;
+    }
+
     createElement() {
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
@@ -66,7 +78,7 @@ class Elemek {
         this.#element.classList.add(this.#isAg ? "ag" : "ko")
         this.#container.appendChild(this.#element);
     }
-    /* collect függvény */
+
     move() {
         this.#moveInterval = setInterval(() => {
             if (this.#element.parentNode == null) {
@@ -88,6 +100,7 @@ class Elemek {
         this.#moveInterval = null;
     }
 
+
     eletVeszites() {
         if (this.#element == null || this.#utkozott) {
             return;
@@ -102,14 +115,33 @@ class Elemek {
         if (
             this.#x < bekaX + 80 &&
             this.#x + szelesseg > bekaX &&
-            this.#y < bekaY + 80 &&
+            this.#y < bekaY + 120 &&
             this.#y + magassag > bekaY
         ) {
             this.#utkozott = true;
 
-            if (!beka.pajzsAktiv() && !Elemek.#utkozesVedett) {
-                Elemek.#elet--;
+            clearTimeout(this.#utesTimeout);
 
+            if (beka.getUgrik()) {
+                beka.setElement("url('./img/bekaUgrikUtes.png')");
+            } else {
+                beka.setElement("url('./img/bekaUtes.png')");
+            }
+
+            if (beka.pajzsAktiv()) {
+                this.#utesTimeout = setTimeout(() => {
+                    if (beka.getUgrik()) {
+                        beka.setElement("url('./img/bekaUgrik.png')");
+                    } else {
+                        beka.setElement("url('./img/beka.png')");
+                    }
+                }, 200);
+
+                return;
+            }
+
+            if (!Elemek.#utkozesVedett) {
+                Elemek.#elet--;
                 Elemek.#utkozesVedett = true;
 
                 document.querySelector(".elet span").innerHTML =
@@ -118,27 +150,18 @@ class Elemek {
                 setTimeout(() => {
                     Elemek.#utkozesVedett = false;
                 }, 1000);
-
-                if (this.#isAg) {
-                    beka.setElement("url('./img/bekaUgrikUtes.png')");
-                } else {
-                    beka.setElement("url('./img/bekaUtes.png')");
-                }
-
-                clearTimeout(this.#szajInterval);
-
-                this.#szajInterval = setTimeout(() => {
-                    if (this.#isAg) {
-                        beka.setElement("url('./img/bekaUgrik.png')");
-                    } else {
-                        beka.setElement("url('./img/beka.png')");
-                    }
-                }, 200);
             }
 
-
+            this.#utesTimeout = setTimeout(() => {
+                if (beka.getUgrik()) {
+                    beka.setElement("url('./img/bekaUgrik.png')");
+                } else {
+                    beka.setElement("url('./img/beka.png')");
+                }
+            }, 200);
         }
     }
+
 
     toString() {
         return "{" + this.getX() + ";" + this.getY() + ";" + this.getContainer() + ";" + this.getSpeed() + "}";

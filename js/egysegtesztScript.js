@@ -6,7 +6,7 @@ console.assert(elem1.getY() === 20, "Hiba a getY() metódus működésében!");
 
 console.assert(elem1.getSpeed() === 15, "Hiba a getSpeed() metódus működésében!");
 
-console.assert(elem1.toString() === "{400;20;[object HTMLDivElement];15}", "Hiba a konstruktor adatbeállításaiban!");
+console.assert(elem1.toString() === "{400;20;[object HTMLElement];15}", "Hiba a konstruktor adatbeállításaiban!");
 
 var elem2 = new Elemek(900, 20, "section", 15);
 
