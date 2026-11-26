@@ -120,24 +120,14 @@ class Elemek {
         ) {
             this.#utkozott = true;
 
-            clearTimeout(this.#utesTimeout);
+            if (beka.pajzsAktiv()) {
+                return;
+            }
 
             if (beka.getUgrik()) {
                 beka.setElement("url('./img/bekaUgrikUtes.png')");
             } else {
                 beka.setElement("url('./img/bekaUtes.png')");
-            }
-
-            if (beka.pajzsAktiv()) {
-                this.#utesTimeout = setTimeout(() => {
-                    if (beka.getUgrik()) {
-                        beka.setElement("url('./img/bekaUgrik.png')");
-                    } else {
-                        beka.setElement("url('./img/beka.png')");
-                    }
-                }, 200);
-
-                return;
             }
 
             if (!Elemek.#utkozesVedett) {
@@ -152,7 +142,9 @@ class Elemek {
                 }, 1000);
             }
 
-            this.#utesTimeout = setTimeout(() => {
+            clearTimeout(this.#szajInterval);
+
+            this.#szajInterval = setTimeout(() => {
                 if (beka.getUgrik()) {
                     beka.setElement("url('./img/bekaUgrik.png')");
                 } else {
