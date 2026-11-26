@@ -4,7 +4,7 @@ var gameIntervalElemek = null;
 var gameArea = document.querySelector("section");
 var beka = new Beka(90, 450, "section", 25);
 var scoreInterval = null;
-var elet = document.querySelector(".my-5 p span");
+var elet = document.querySelector(".elet span");
 var pont = document.querySelector(".pont span");
 
 const nyeresModal = new bootstrap.Modal('#nyeres');

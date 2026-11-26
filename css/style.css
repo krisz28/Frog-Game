@@ -24,7 +24,7 @@ section {
 }
 
 aside {
-    height: 600px;
+
     background-color: rgba(0, 0, 0, 0.5);
 
 }
@@ -40,6 +40,7 @@ footer {
 
 header,
 footer {
+   
     background-color: rgb(75, 112, 75);
     color: #ffffff;
 

@@ -115,9 +115,9 @@ class Elemek {
         var magassag = this.#isAg ? 200 : 120;
 
         if (
-            this.#x < bekaX + 80 &&
+            this.#x < bekaX + 60 &&
             this.#x + szelesseg > bekaX &&
-            this.#y < bekaY + 120 &&
+            this.#y < bekaY + 40 &&
             this.#y + magassag > bekaY
         ) {
             this.#utkozott = true;
