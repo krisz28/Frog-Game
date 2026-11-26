@@ -9,23 +9,42 @@ class Elemek {
     #szajInterval = null;
 
     static #elet = 3;
-    constructor(x, container, speed) {
+    constructor(x,y, container, speed) {
         this.setX(x);
+        this.setY(y);
         this.setSpeed(speed);
         this.setContainer(container);
         this.createElement();
     }
     setX(x) {
-        this.#x = x;
+        if(x > 800 || x < 1){
+            this.#x = 800;
+        }else this.#x = x;
     }
     setY(y) {
-        this.#y = y;
+        if(y != 20 && y != 460){
+            this.#y = 0;
+        }else this.#y = y;
     }
     setContainer(container) {
         this.#container = document.querySelector(container);
     }
     setSpeed(speed) {
-        this.#speed = speed;
+        if(speed < 1){
+            this.#speed = 0;
+        }else this.#speed = speed;
+    }
+    getX(){
+        return this.#x;
+    }
+    getY(){
+        return this.#y;
+    }
+    getSpeed(){
+        return this.#speed;
+    }
+    getContainer(){
+        return this.#container;
     }
     static getElet() {
         return Elemek.#elet;
@@ -97,8 +116,9 @@ class Elemek {
 
         }
 
-
-
+    }
+    toString() {
+        return "{" + this.getX() + ";" + this.getY() + ";" + this.getContainer() + ";" + this.getSpeed() +"}";
     }
 
 }

@@ -26,7 +26,7 @@ document.querySelector(".kezdes").addEventListener("click", () => {
         }, 2000);
         gameIntervalElemek = setInterval(() => {
             var speed = 15; 
-            var obj = new Elemek(gameArea.offsetWidth, "section", speed);
+            var obj = new Elemek(gameArea.offsetWidth,gameArea.offsetHeight, "section", speed);
             obj.move();
         }, 1000);
     }
