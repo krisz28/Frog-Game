@@ -7,6 +7,8 @@ class Beka {
     #moveInterval = null;
     #ugrik = false;
     #szajInterval = null;
+    #pajzs;
+    #pajzsTimeout = null;
 
     constructor(x, y, container, speed) {
         this.setX(x);
@@ -17,13 +19,22 @@ class Beka {
     }
 
     setX(x) {
-        this.#x = x;
+        if (x < 0 || x > 680) {
+            this.#x = 90;
+        } else {
+            this.#x = x;
+        }
     }
 
     setY(y) {
-        this.#y = y;
+        if (y < 0 || y > 480) {
+            this.#y = 450;
+        } else {
+            this.#y = y;
+        }
     }
-    setElement(kep){
+
+    setElement(kep) {
         this.#element.style.backgroundImage = kep;
     }
 
@@ -36,7 +47,15 @@ class Beka {
     }
 
     setSpeed(speed) {
-        this.#speed = speed;
+        if (speed < 1) {
+            this.#speed = 25;
+        } else {
+            this.#speed = speed;
+        }
+    }
+
+    getContainer() {
+        return this.#container;
     }
 
     setContainer(container) {
@@ -49,6 +68,10 @@ class Beka {
         this.#element.style.top = this.#y + "px";
         this.#element.classList.add("beka");
         this.#container.appendChild(this.#element);
+
+        this.#pajzs = document.createElement("div");
+        this.#pajzs.classList.add("pajzs");
+        this.#element.appendChild(this.#pajzs);
     }
 
 
@@ -107,5 +130,22 @@ class Beka {
         }, 200);
     }
 
+    pajzsAktivalas() {
+        this.#pajzs.classList.add("aktiv");
 
+        clearTimeout(this.#pajzsTimeout);
+
+        this.#pajzsTimeout = setTimeout(() => {
+            this.#pajzs.classList.remove("aktiv");
+            this.#pajzsTimeout = null;
+        }, 5000);
+    }
+
+    pajzsAktiv() {
+        return this.#pajzs.classList.contains("aktiv");
+    }
+
+    toString() {
+        return "{" + this.getX() + ";" + this.getY() + ";" + this.getContainer() + ";" + this.getSpeed() + "}";
+    }
 }

@@ -7,9 +7,12 @@ class Elemek {
     #element;
     #moveInterval = null;
     #szajInterval = null;
+    #utkozott = false;
 
     static #elet = 3;
-    constructor(x,y, container, speed) {
+    static #utkozesVedett = false;
+
+    constructor(x, y, container, speed) {
         this.setX(x);
         this.setY(y);
         this.setSpeed(speed);
@@ -17,40 +20,41 @@ class Elemek {
         this.createElement();
     }
     setX(x) {
-        if(x > 800 || x < 1){
+        if (x > 800 || x < 1) {
             this.#x = 800;
-        }else this.#x = x;
+        } else this.#x = x;
     }
     setY(y) {
-        if(y != 20 && y != 460){
+        if (y != 20 && y != 460) {
             this.#y = 0;
-        }else this.#y = y;
+        } else this.#y = y;
     }
     setContainer(container) {
         this.#container = document.querySelector(container);
     }
     setSpeed(speed) {
-        if(speed < 1){
+        if (speed < 1) {
             this.#speed = 0;
-        }else this.#speed = speed;
+        } else this.#speed = speed;
     }
-    getX(){
+    getX() {
         return this.#x;
     }
-    getY(){
+    getY() {
         return this.#y;
     }
-    getSpeed(){
+    getSpeed() {
         return this.#speed;
     }
-    getContainer(){
+    getContainer() {
         return this.#container;
     }
     static getElet() {
         return Elemek.#elet;
     }
-    static tResetElet() {
+    static ResetElet() {
         Elemek.#elet = 3;
+        Elemek.#utkozesVedett = false;
     }
 
     createElement() {
@@ -85,40 +89,61 @@ class Elemek {
     }
 
     eletVeszites() {
-        clearTimeout(this.#szajInterval);
-        var bekaX = beka.getX();
-        var bekaY = beka.getY();
-        var szelesseg = (this.#isAg ? 100 : 10);
-        var magassag = (this.#isAg ? 200 : 120);
-
-        if (this.#x < bekaX + 80 && this.#x + szelesseg > bekaX &&
-            this.#y < bekaY + 80 && this.#y + magassag > bekaY) {
-            Elemek.#elet--;
-            document.querySelector(".elet span").innerHTML = Elemek.#elet;
-            /* béka fájdalom kifejező arc */
-            this.remove();
-            if (this.#isAg) {
-                beka.setElement("url('./img/bekaUgrikUtes.png')")
-            }
-            else {
-                beka.setElement("url('./img/bekaUtes.png')")
-            }
-
-            this.#szajInterval = setTimeout(() => {
-                if (this.#isAg) {
-                    beka.setElement("url('./img/bekaUgrik.png')")
-                }
-                else {
-                    beka.setElement("url('./img/beka.png')")
-                }
-
-            }, 200);
-
+        if (this.#element == null || this.#utkozott) {
+            return;
         }
 
+        var bekaX = beka.getX();
+        var bekaY = beka.getY();
+
+        var szelesseg = this.#isAg ? 100 : 120;
+        var magassag = this.#isAg ? 200 : 120;
+
+        if (
+            this.#x < bekaX + 80 &&
+            this.#x + szelesseg > bekaX &&
+            this.#y < bekaY + 80 &&
+            this.#y + magassag > bekaY
+        ) {
+            this.#utkozott = true;
+
+            if (!beka.pajzsAktiv() && !Elemek.#utkozesVedett) {
+                Elemek.#elet--;
+
+                Elemek.#utkozesVedett = true;
+
+                document.querySelector(".elet span").innerHTML =
+                    Elemek.#elet;
+
+                setTimeout(() => {
+                    Elemek.#utkozesVedett = false;
+                }, 1000);
+
+                if (this.#isAg) {
+                    beka.setElement("url('./img/bekaUgrikUtes.png')");
+                } else {
+                    beka.setElement("url('./img/bekaUtes.png')");
+                }
+
+                clearTimeout(this.#szajInterval);
+
+                this.#szajInterval = setTimeout(() => {
+                    if (this.#isAg) {
+                        beka.setElement("url('./img/bekaUgrik.png')");
+                    } else {
+                        beka.setElement("url('./img/beka.png')");
+                    }
+                }, 200);
+            }
+
+
+        }
     }
+
     toString() {
-        return "{" + this.getX() + ";" + this.getY() + ";" + this.getContainer() + ";" + this.getSpeed() +"}";
+        return "{" + this.getX() + ";" + this.getY() + ";" + this.getContainer() + ";" + this.getSpeed() + "}";
     }
 
 }
+
+

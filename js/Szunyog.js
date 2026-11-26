@@ -5,23 +5,33 @@ class Szunyog {
     #speed;
     #element;
     #moveInterval = null;
+    #pajzsos;
 
     static #pont = 0;
 
-    constructor(x, y, speed, container) {
+    constructor(x, y, speed, container, pajzsos = false) {
         this.setX(x);
         this.setY(y);
         this.setSpeed(speed);
         this.setContainer(container);
+        this.#pajzsos = pajzsos;
         this.createElement();
     }
 
     setX(x) {
-        this.#x = x;
+        if (x < 0 || x > 800) {
+            this.#x = 800;
+        } else {
+            this.#x = x;
+        }
     }
 
     setY(y) {
-        this.#y = y;
+        if (y < 0 || y > 550) {
+            this.#y = 180;
+        } else {
+            this.#y = y;
+        }
     }
 
     getY() {
@@ -32,8 +42,16 @@ class Szunyog {
         return this.#x;
     }
 
+    getContainer() {
+        return this.#container;
+    }
+
     setSpeed(speed) {
-        this.#speed = speed;
+        if (speed < 1) {
+            this.#speed = 4;
+        } else {
+            this.#speed = speed;
+        }
     }
 
     setContainer(container) {
@@ -44,25 +62,34 @@ class Szunyog {
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
         this.#element.style.top = this.#y + "px";
-        this.#element.classList.add("szunyog");
+
+        if (this.#pajzsos) {
+            this.#element.classList.add("szunyogPajzs");
+        } else {
+            this.#element.classList.add("szunyog");
+        }
+
         this.#container.appendChild(this.#element);
     }
 
 
     collect() {
-        let bekaX = beka.getX();
-        let bekaY = beka.getY();
+        var bekaX = beka.getX();
+        var bekaY = beka.getY();
 
         if (this.#x < bekaX + 120 && this.#x + 50 > bekaX &&
             this.#y < bekaY + 120 && this.#y + 50 > bekaY) {
             Szunyog.#pont++;
             document.querySelector(".pont span").innerHTML = Szunyog.#pont;
             beka.szajNyitas();
+
+            if (this.#pajzsos) {
+                beka.pajzsAktivalas();
+            }
+
             this.remove();
         }
     }
-
-
 
     move() {
         this.#moveInterval = setInterval(() => {
@@ -76,11 +103,7 @@ class Szunyog {
     }
 
     remove() {
-        if (this.#element != null) {
-            this.#element.remove();
-            this.#element = null;
-        }
-
+        this.#element.remove();
         clearInterval(this.#moveInterval);
     }
 
@@ -91,5 +114,9 @@ class Szunyog {
 
     static resetGame() {
         Szunyog.#pont = 0;
+    }
+
+    toString() {
+        return "{" + this.getX() + ";" + this.getY() + ";" + this.getContainer() + ";" + this.getSpeed() + "}";
     }
 }

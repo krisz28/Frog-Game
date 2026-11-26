@@ -48,7 +48,8 @@ footer {
 .beka,
 .szunyog,
 .ag,
-.ko {
+.ko,
+.szunyogPajzs {
     width: 120px;
     height: 120px;
     position: absolute;
@@ -57,7 +58,7 @@ footer {
     background-repeat: no-repeat;
 }
 
-.szunyog {
+.szunyog, .szunyogPajzs {
     background-image: url("../img/szunyog.png");
     width: 50px;
     height: 50px;
@@ -73,4 +74,31 @@ footer {
     background-image: url("../img/ko.png");
     width: 120px;
     height: 120px;
+}
+
+
+.szunyogPajzs {
+    background-image: url("../img/szunyogPajzs.png");
+}
+
+.pajzs {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    top: -10px;
+    left: -10px;
+
+    border: 5px solid #00aaff;
+    border-radius: 50%;
+
+    background-color: rgba(0, 170, 255, 0.2);
+    box-shadow: 0 0 15px #00aaff;
+
+    display: none;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.pajzs.aktiv {
+    display: block;
 }

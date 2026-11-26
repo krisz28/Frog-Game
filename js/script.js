@@ -21,12 +21,13 @@ document.querySelector(".kezdes").addEventListener("click", () => {
         gameIntervalSzunyog = setInterval(() => {
             var y = 180 + Math.random() * 230;
             var speed = 4 + Math.random() * 3;
-            var obj = new Szunyog(gameArea.offsetWidth, y, speed, "section");
+            var pajzsos = Math.random() < 0.1;
+            var obj = new Szunyog(gameArea.offsetWidth, y, speed, "section", pajzsos);
             obj.move();
         }, 2000);
         gameIntervalElemek = setInterval(() => {
-            var speed = 15; 
-            var obj = new Elemek(gameArea.offsetWidth,gameArea.offsetHeight, "section", speed);
+            var speed = 15;
+            var obj = new Elemek(gameArea.offsetWidth, gameArea.offsetHeight, "section", speed);
             obj.move();
         }, 1000);
     }
@@ -62,10 +63,11 @@ function stop() {
 
     gameInterval = null;
     Szunyog.resetGame();
-    Elemek.tResetElet();
+    Elemek.ResetElet();
     document.querySelectorAll(".ko").forEach(ko => ko.remove());
     document.querySelectorAll(".ag").forEach(ag => ag.remove());
     document.querySelectorAll(".szunyog").forEach(szunyog => szunyog.remove());
+    document.querySelectorAll(".szunyogPajzs").forEach(szunyog => szunyog.remove());
 }
 function veszitModal() {
     stop();
@@ -77,7 +79,7 @@ function veszitModal() {
     document.querySelector("#nyeres .btn-secondary").addEventListener("click", () => {
         document.querySelector("#nyeres .modal-header").classList.add("bg-success");
         document.querySelector("#nyeres .modal-header").classList.remove("bg-danger");
-        document.querySelector("#nyeres .modal-header").innerHTML = "NERTÉL";
+        document.querySelector("#nyeres .modal-header").innerHTML = "NYERTÉL";
         document.querySelector("#nyeres .modal-body").innerHTML = "Elérted a 20 pontot és maradt életed.";
     });
 
